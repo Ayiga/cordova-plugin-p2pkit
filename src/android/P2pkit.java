@@ -24,12 +24,12 @@ public class P2pkit extends CordovaPlugin {
         public void onSuspended() {
             // p2pkit is temporarily suspended
         }
-        
+
         @Override
         public void onResumed() {
             // coming back from a suspended state
         }
-        
+
         @Override
         public void onDisabled() {
             // p2pkit has been disabled
@@ -51,7 +51,7 @@ public class P2pkit extends CordovaPlugin {
                 result.setKeepCallback(true);
                 discoveryListenerCallbackContext.sendPluginResult(result);
             } catch(Exception e) {
-                
+
             }
         }
 
@@ -68,7 +68,7 @@ public class P2pkit extends CordovaPlugin {
                 result.setKeepCallback(true);
                 discoveryListenerCallbackContext.sendPluginResult(result);
             } catch(Exception e) {
-                
+
             }
         }
 
@@ -85,7 +85,7 @@ public class P2pkit extends CordovaPlugin {
                 result.setKeepCallback(true);
                 discoveryListenerCallbackContext.sendPluginResult(result);
             } catch(Exception e) {
-                
+
             }
         }
 
@@ -105,7 +105,7 @@ public class P2pkit extends CordovaPlugin {
 
             }
         }
-        
+
         public void onProximityStrengthChanged(ch.uepaa.p2pkit.discovery.entity.Peer peer) {
             try{
                 JSONObject json=new JSONObject();
@@ -119,7 +119,7 @@ public class P2pkit extends CordovaPlugin {
                 result.setKeepCallback(true);
                 discoveryListenerCallbackContext.sendPluginResult(result);
             } catch(Exception e) {
-                
+
             }
         }
     };
@@ -146,6 +146,10 @@ public class P2pkit extends CordovaPlugin {
             this.createP2pDiscoveryListener(callbackContext);
             return true;
         }
+        if (action.equals("getUUID")) {
+            this.getUUID(callbackContext);
+            return true;
+        }
         return false;
     }
 
@@ -164,6 +168,10 @@ public class P2pkit extends CordovaPlugin {
         pluginResult.setKeepCallback(true);
     }
 
+    private void getUUID(CallbackContext callbackContext) {
+        callbackContext.success(""+P2PKitClient.getInstance(this.cordova.getActivity()).getNodeId());
+    }
+
     private void isP2PServicesAvailable(CallbackContext callbackContext) {
         final StatusResult result = P2PKitClient.isP2PServicesAvailable(this.cordova.getActivity());
         if (result.getStatusCode() == StatusResult.SUCCESS) {
@@ -179,4 +187,3 @@ public class P2pkit extends CordovaPlugin {
         callbackContext.success();
     }
 }
-

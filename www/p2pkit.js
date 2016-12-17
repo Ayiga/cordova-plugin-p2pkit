@@ -21,3 +21,7 @@ exports.createP2pDiscoveryListener = function(opts){
 		}
 	}, null, 'p2pkit', 'createP2pDiscoveryListener');
 };
+
+exports.getUUID = function(success, error) {
+  exec(success, error, 'p2pkit', 'getUUID');
+};
