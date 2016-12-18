@@ -21,6 +21,12 @@
     [PPKController enableWithConfiguration:apikey observer:self];
 }
 
+- (void)disableP2PKit:(CDVInvokedUrlCommand*)command
+{
+    initializedCallbackId = command.callbackId;
+    [PPKController disable];
+}
+
 - (void)createP2pDiscoveryListener:(CDVInvokedUrlCommand*)command
 {
     discoveryListenerCallbackId = command.callbackId;

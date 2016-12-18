@@ -12,6 +12,10 @@ exports.enableP2PKit = function(apikey, success, error){
 	exec(success, error, 'p2pkit', 'enableP2PKit', [apikey]);
 };
 
+exports.disableP2PKit = function(success, error){
+	exec(success, error, 'p2pkit', 'disableP2PKit');
+};
+
 exports.createP2pDiscoveryListener = function(opts){
 	exec(function(json) {
 		console.log('success called '+json);

@@ -142,6 +142,11 @@ public class P2pkit extends CordovaPlugin {
             this.enableP2PKit(apikey, callbackContext);
             return true;
         }
+        if (action.equals("disableP2PKit")) {
+            String apikey = args.getString(0);
+            this.enableP2PKit(apikey, callbackContext);
+            return true;
+        }
         if (action.equals("createP2pDiscoveryListener")) {
             this.createP2pDiscoveryListener(callbackContext);
             return true;
@@ -184,6 +189,12 @@ public class P2pkit extends CordovaPlugin {
     private void enableP2PKit(String apikey, CallbackContext callbackContext) {
         P2PKitClient client = P2PKitClient.getInstance(this.cordova.getActivity());
         client.enableP2PKit(mStatusCallback, apikey);
+        callbackContext.success();
+    }
+
+    private void disableP2PKit(CallbackContext callbackContext) {
+        P2PKitClient client = P2PKitClient.getInstance(this.cordova.getActivity());
+        client.disableP2PKit();
         callbackContext.success();
     }
 }
